@@ -4,7 +4,7 @@ import { BiSupport } from "react-icons/bi";
 
 const AboutUs = () => {
   return (
-    <div className="lg:max-w-7xl lg:mx-auto mt-20 mb-20">
+    <div className="lg:max-w-7xl lg:mx-auto mt-32 mb-32">
       <div className="text-center">
         <h2 className="text-2xl font-bold">About Us</h2>
         <p className="text-[#8E8E8E] pt-3 pb-5">

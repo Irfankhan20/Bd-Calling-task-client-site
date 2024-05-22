@@ -2,7 +2,7 @@
 
 const Banner = () => {
   return (
-    <div className="rounded-xl lg:max-w-7xl  bg-[#C1DCDC] lg:h-[512px] lg:mx-auto">
+    <div className="rounded-xl lg:max-w-7xl mt-3 bg-[#C1DCDC] lg:h-[512px] lg:mx-auto">
       <div className="flex justify-between w-full">
         {/* 1st div  */}
         <div className=" mt-10 ml-10">
