@@ -1,9 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
-
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
-import useAuth from "../../hooks/useAuth";
 
 const SocialLogin = () => {
   const { googleLoginHandle, facebookLoginSetup, gitHubLoginSetup } = useAuth();
@@ -17,7 +16,8 @@ const SocialLogin = () => {
         // stored data in database ;
         const name = result.user.displayName;
         const email = result.user.email;
-        const user = { name, email, role: "user", postInfo: [] };
+        const userProfile = result.user.photoURL;
+        const user = { name, email, role: "user", userProfile, postInfo: [] };
         const res = await axiosPublic.post("/users", user);
         console.log(res.data, "from the userdb");
         Swal.fire({

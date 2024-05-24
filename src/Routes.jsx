@@ -19,17 +19,21 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products></Products>,
-        loader: () => fetch("http://localhost:5000/products"),
+        loader: () =>
+          fetch("https://bd-calling-job-task-server.vercel.app/products"),
       },
+
       {
-        path: "/contacts",
+        path: "/contactUs",
         element: <Contacts></Contacts>,
       },
       {
         path: `/products/:id`,
         element: <ProductDetails></ProductDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://bd-calling-job-task-server.vercel.app/products/${params.id}`
+          ),
       },
       {
         path: "/login",

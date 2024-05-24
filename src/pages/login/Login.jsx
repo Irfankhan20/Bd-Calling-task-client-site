@@ -1,18 +1,65 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+// import Swal from "sweetalert2";
+
+import { toast } from "react-toastify";
+import SocialLogin from "../socialLogin/SocialLogin";
 // import SocialLogin from "../socialLogin/SocialLogin";
 
 const Login = () => {
+  const { handleSignIn } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [error, setError] = useState("");
+  console.log(error);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    const value = { email, password };
+    console.log(value);
+
+    //signIn user
+    handleSignIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+
+        toast.success("Login successful!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+
+        // navigate after login
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+        toast.error("Login failed. Please check your email and password.", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      });
   };
   return (
     <div className="card font-serif  shrink-0 w-full max-w-sm mx-auto mt-5 md:mt-40 lg:mt-60  shadow-2xl bg-base-100">
       <form onSubmit={handleLogin} className="card-body ">
         <p className="text-center text-4xl my-6 ">Login Form</p>
+        <div className="grid justify-center">
+          <SocialLogin></SocialLogin>
+        </div>
         <div className="grid justify-center">
           {/* <SocialLogin></SocialLogin> */}
         </div>

@@ -2,9 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { BsCart2 } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const user = false;
+  const { user, handleSignOut } = useAuth();
+  console.log(user);
 
   const navItems = (
     <>
@@ -15,7 +17,7 @@ const Navbar = () => {
         <NavLink to="/products">Products</NavLink>
       </li>
       <li>
-        <NavLink to="/contacts">Contucts</NavLink>
+        <NavLink to="/contactUs">ContuctUs</NavLink>
       </li>
     </>
   );
@@ -101,11 +103,13 @@ const Navbar = () => {
                       <li>{user?.displayName}</li>
                       <li>
                         <Link to="/dashboard/myProfile">
-                          <button>Dashboard</button>
+                          <button className="border border-red-600">
+                            Dashboard
+                          </button>
                         </Link>
                       </li>
                       <li>
-                        <button>LogOut</button>
+                        <button onClick={handleSignOut}>LogOut</button>
                       </li>
                     </ul>
                   </div>
@@ -118,14 +122,13 @@ const Navbar = () => {
                       tabIndex={0}
                       className="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52"
                     >
-                      <li>{user?.displayName}</li>
-                      <li>
-                        <Link>
-                          <button>Cotact Us</button>
+                      <li className="">
+                        <Link className="" to="/">
+                          <button>Dasboard</button>
                         </Link>
                       </li>
-                      <li>
-                        <Link to="/login">
+                      <li className="mt-2">
+                        <Link className="" to="/login">
                           <button>Login</button>
                         </Link>
                       </li>

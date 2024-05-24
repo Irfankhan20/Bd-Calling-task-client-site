@@ -46,7 +46,7 @@ const ProductDetails = () => {
 
     // send data to the server
 
-    fetch("http://localhost:5000/addProductReview", {
+    fetch("https://bd-calling-job-task-server.vercel.app/addProductReview", {
       method: "POST",
       headers: {
         "content-type": "application/json",

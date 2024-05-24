@@ -1,66 +1,84 @@
 import { useLoaderData } from "react-router-dom";
 import Product from "./Product";
 import { useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 
 const Products = () => {
   const products = useLoaderData();
-  const { loading } = useAuth();
+  console.log(products);
+  // const { loading } = useAuth();
   const [Items, setItems] = useState(products);
-
-  const count = products.length;
-  const itemsPerPage = 6;
-  const numberOfPage = Math.ceil(count / itemsPerPage);
-  const pages = [...Array(numberOfPage).keys()];
+  console.log(Items);
   const [currentPage, setCurrentPage] = useState(0);
+  console.log("currentPage");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedBrand, setSelectedBrand] = useState("All");
+  const [sortCriteria, setSortCriteria] = useState("All");
+
+  const itemsPerPage = 6;
 
   useEffect(() => {
-    fetch(
-      `http://localhost:5000/pagination/?page=${currentPage}&size=${itemsPerPage}`
-    )
-      .then((res) => res.json())
-      .then((data) => setItems(data));
-  }, [currentPage]);
+    let filteredProducts = products;
 
-  if (loading)
-    return (
-      <div className="flex justify-center my-10">
-        {/* <Spinner className="h-8 w-8" /> */}
-      </div>
+    // Apply category filter
+    if (selectedCategory !== "All") {
+      filteredProducts = filteredProducts.filter(
+        (item) => item.category === selectedCategory
+      );
+    }
+
+    // Apply brand filter
+    if (selectedBrand !== "All") {
+      filteredProducts = filteredProducts.filter(
+        (item) => item.brand === selectedBrand
+      );
+    }
+
+    // Apply sorting
+    if (sortCriteria !== "All") {
+      filteredProducts.sort((a, b) => {
+        if (sortCriteria === "price") {
+          return a.price - b.price;
+        } else if (sortCriteria === "average_rating") {
+          return b.average_rating - a.average_rating;
+        }
+        return 0;
+      });
+    }
+
+    const paginatedProducts = filteredProducts.slice(
+      currentPage * itemsPerPage,
+      (currentPage + 1) * itemsPerPage
     );
+    setItems(paginatedProducts);
+    console.log(paginatedProducts, "12312");
+  }, [currentPage, selectedCategory, selectedBrand, sortCriteria, products]);
 
-  // category function
-  const handleSelectChange = (e) => {
-    e.preventDefault();
-    const plant = e.target.value;
-    console.log(plant);
-    if (plant === "All") {
-      const remaining = products.slice(
-        currentPage * itemsPerPage,
-        (currentPage + 1) * itemsPerPage
-      );
-      setItems(remaining);
-    } else {
-      const remaining = products?.filter((item) => item.category === plant);
-      setItems(remaining.slice(0, itemsPerPage));
-    }
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+    setCurrentPage(0);
   };
-  // brands function
-  const handleChange = (e) => {
-    e.preventDefault();
-    const plant = e.target.value;
-    console.log(plant);
-    if (plant === "All") {
-      const remaining = products.slice(
-        currentPage * itemsPerPage,
-        (currentPage + 1) * itemsPerPage
-      );
-      setItems(remaining);
-    } else {
-      const remaining = products?.filter((item) => item.brand === plant);
-      setItems(remaining.slice(0, itemsPerPage));
-    }
+
+  const handleBrandChange = (e) => {
+    setSelectedBrand(e.target.value);
+    setCurrentPage(0);
   };
+
+  const handleSortChange = (e) => {
+    setSortCriteria(e.target.value);
+    setCurrentPage(0);
+  };
+
+  const filteredProducts = products.filter((product) => {
+    return (
+      (selectedCategory === "All" || product.category === selectedCategory) &&
+      (selectedBrand === "All" || product.brand === selectedBrand)
+    );
+  });
+
+  const count = filteredProducts.length;
+  const numberOfPages = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(numberOfPages).keys()];
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -72,7 +90,26 @@ const Products = () => {
 
       {/* sort and filter section  */}
       <div className="flex justify-between mb-5">
-        <div>sorting</div>
+        {/* sort section  */}
+        <div>
+          {/* sort by price  */}
+          <form>
+            <div className="form-control">
+              <div className="input-group">
+                <select
+                  onChange={handleSortChange}
+                  value={sortCriteria}
+                  name="sort"
+                  className="select w-32 select-bordered"
+                >
+                  <option value="All">Sort by</option>
+                  <option value="price">Price</option>
+                  <option value="average_rating">Rating</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
 
         {/* filtering  */}
         <div
@@ -88,8 +125,9 @@ const Products = () => {
             <div className="form-control">
               <div className="input-group">
                 <select
-                  onChange={(e) => handleSelectChange(e)}
-                  name="plants"
+                  onChange={handleCategoryChange}
+                  value={selectedCategory}
+                  name="category"
                   className="select w-56 select-bordered"
                 >
                   <option value="All">All Categories</option>
@@ -105,8 +143,9 @@ const Products = () => {
             <div className="form-control">
               <div className="input-group">
                 <select
-                  onChange={(e) => handleChange(e)}
-                  name="plants"
+                  onChange={handleBrandChange}
+                  value={selectedBrand}
+                  name="brand"
                   className="select w-56 select-bordered"
                 >
                   <option value="All">All Brands</option>
@@ -121,8 +160,8 @@ const Products = () => {
       </div>
 
       {/* card section  */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-2 lg:gap-3 mb-20 pl-7  ">
-        {Items.map((product, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-2 lg:gap-3 mb-20 pl-7">
+        {Items?.map((product, index) => (
           <Product key={index} product={product}></Product>
         ))}
       </div>
@@ -132,11 +171,11 @@ const Products = () => {
         <div className="grid grid-cols-3 gap-6">
           {pages.map((page) => (
             <button
-              className={currentPage === page ? "btn btn-warning" : undefined}
+              className={currentPage === page ? "btn btn-warning" : "btn"}
               onClick={() => setCurrentPage(page)}
               key={page}
             >
-              {page}{" "}
+              {page + 1}
             </button>
           ))}
         </div>

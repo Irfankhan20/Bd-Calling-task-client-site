@@ -1,5 +1,9 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Registration = () => {
   const {
@@ -7,6 +11,11 @@ const Registration = () => {
     handleSubmit,
     //   formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
+  const { handleSignUp, updateUserProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+  const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
   const handleFormSubmit = async (data) => {
     // console.log(data);
@@ -14,11 +23,59 @@ const Registration = () => {
     const email = data.email;
     const password = data.password;
     const imageFile = { image: data.image[0] };
-    console.log(name, email, password, imageFile);
+    console.log(imageFile);
+    const res = await axiosPublic.post(img_hosting_api, imageFile, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    console.log("image hosting result data:", res.data.data.url);
+
+    if (res.data.success) {
+      const userInfo = {
+        displayName: name,
+        photoURL: res.data.data.url,
+      };
+      const userProfile = res.data.data.url;
+      handleSignUp(email, password)
+        .then((result) => {
+          console.log(result.user);
+          //user is created successfully
+          updateUserProfile(userInfo)
+            .then(async () => {
+              console.log("user profile is updated successfully");
+              // stored data in database ;
+              const user = {
+                name,
+                email,
+                role: "user",
+                userProfile,
+                postInfo: [],
+              };
+              const res = await axiosPublic.post("/users", user);
+              console.log(res.data, "from the userdb");
+              if (res.data.insertedId) {
+                Swal.fire({
+                  position: "top-center",
+                  icon: "success",
+                  title: "Your registration  is successfully done",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
+              navigate("/");
+            })
+            .catch(() => {
+              console.log("user profile updating failed");
+            });
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
   };
+
   return (
     <div className="card font-serif  shrink-0 w-full max-w-lg mx-auto mt-5 md:mt-40 lg:mt-60  shadow-2xl bg-base-100">
-      <form className="card-body" onSubmit={handleSubmit(handleFormSubmit)}>
+      <form className="card-body " onSubmit={handleSubmit(handleFormSubmit)}>
         <p className="text-center text-4xl my-6 ">Registration Form</p>
         <div className="grid justify-center">
           {/* <SocialLogin></SocialLogin> */}

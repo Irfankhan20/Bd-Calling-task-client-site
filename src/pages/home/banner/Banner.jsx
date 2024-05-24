@@ -5,11 +5,24 @@ const Banner = () => {
     <div className="rounded-xl max-w-7xl mt-3 bg-[#C1DCDC] lg:h-[512px] mx-auto">
       <div className="flex justify-between w-full">
         {/* 1st div  */}
-        <div className=" mt-10 ml-10">
+        <div className=" mt-20 ml-10">
           <h2 className="text-5xl font-extrabold ">
             Buy your <br /> dream plants
           </h2>
-          <div className="mt-6">
+          {/* plants & customer count  */}
+          <div className="flex gap-5 pt-10">
+            <div className="text-3xl font-medium">
+              <h2>30+</h2>
+              <p>Plant Species</p>
+            </div>
+            <div className=" text-5xl">|</div>
+            <div className="font-medium text-3xl">
+              <h2>100+</h2>
+              <p>Customers</p>
+            </div>
+          </div>
+          {/* search functionality */}
+          <div className="mt-10">
             <label className="input input-bordered flex items-center gap-2">
               <input
                 type="text"
