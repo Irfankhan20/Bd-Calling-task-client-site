@@ -11,7 +11,7 @@ const Navbar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
+      <li className="mx-3">
         <NavLink to="/products">Products</NavLink>
       </li>
       <li>
@@ -20,7 +20,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="drawer  dark:bg-black dark:text-green-700  lg:max-w-7xl lg:mx-auto">
+    <div className="drawer shadow-xl dark:bg-black dark:text-green-700  lg:max-w-7xl lg:mx-auto">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
@@ -125,7 +125,9 @@ const Navbar = () => {
                         </Link>
                       </li>
                       <li>
-                        <button>Login</button>
+                        <Link to="/login">
+                          <button>Login</button>
+                        </Link>
                       </li>
                     </ul>
                   </div>

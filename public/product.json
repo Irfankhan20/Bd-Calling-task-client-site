@@ -1,0 +1,122 @@
+[
+  {
+    "image": "https://i.ibb.co/9qL2zjt/artificial-plants-large-artifi-1664426675-292189ee-progressive.jpg",
+    "name": "Artificial Bonsai Tree",
+    "price": 59.99,
+    "average_rating": 4.5,
+    "category": "Natural Plants",
+    "brand": "GreenScape"
+  },
+  {
+    "image": "https://i.ibb.co/brLJ1PY/f31f9f5e-2da0-4598-b567-2d6c78d048e0-SL480.jpg",
+    "name": "Mini Ficus Tree",
+    "price": 129.99,
+    "average_rating": 4.3,
+    "category": "Natural Plants",
+    "brand": "Leafy Life"
+  },
+  {
+    "image": "https://i.ibb.co/VgHB6Sm/91-JD3-SIy-Hm-L-AC-UF350-350-QL50.jpg",
+    "name": "Decorative Palm Tree",
+    "price": 79.99,
+    "average_rating": 4.7,
+    "category": "Artificial Plants",
+    "brand": "GreenScape"
+  },
+  {
+    "image": "https://i.ibb.co/7KGMCms/valentine-467x700.jpg",
+    "name": "Potted Maple Tree",
+    "price": 49.99,
+    "average_rating": 4.6,
+    "category": "Artificial Plants",
+    "brand": "Leafy Life"
+  },
+  {
+    "image": "https://i.ibb.co/P5vyKvb/img-3.jpg",
+    "name": "Succulent Tree Set",
+    "price": 29.99,
+    "average_rating": 4.4,
+    "category": "Plants Accessories",
+    "brand": "GreenThumb"
+  },
+  {
+    "image": "https://i.ibb.co/xqNGJSh/img-2.jpg",
+    "name": "Evergreen Bonsai Tree",
+    "price": 39.99,
+    "average_rating": 4.2,
+    "category": "Natural Plants",
+    "brand": "GreenThumb"
+  },
+  {
+    "image": "https://i.ibb.co/9qL2zjt/artificial-plants-large-artifi-1664426675-292189ee-progressive.jpg",
+    "name": "Large Indoor Ficus Tree",
+    "price": 149.99,
+    "average_rating": 4.8,
+    "category": "Natural Plants",
+    "brand": "GreenScape"
+  },
+  {
+    "image": "https://i.ibb.co/xqNGJSh/img-2.jpg",
+    "name": "Outdoor Palm Tree",
+    "price": 89.99,
+    "average_rating": 4.7,
+    "category": "Plants Accessories",
+    "brand": "Leafy Life"
+  },
+  {
+    "image": "https://i.ibb.co/xqNGJSh/img-2.jpg",
+    "name": "Small Indoor Pine Tree",
+    "price": 39.99,
+    "average_rating": 4.5,
+    "category": "Natural Plants",
+    "brand": "GreenThumb"
+  },
+  {
+    "image": "https://i.ibb.co/xqNGJSh/img-2.jpg",
+    "name": "Mini Maple Tree",
+    "price": 59.99,
+    "average_rating": 4.6,
+    "category": "Plants Accessories",
+    "brand": "GreenScape"
+  },
+  {
+    "image": "https://i.ibb.co/xqNGJSh/img-2.jpg",
+    "name": "Decorative Fig Tree",
+    "price": 69.99,
+    "average_rating": 4.3,
+    "category": "Artificial Plants",
+    "brand": "Leafy Life"
+  },
+  {
+    "image": "https://i.ibb.co/xqNGJSh/img-2.jpg",
+    "name": "Indoor Bamboo Tree",
+    "price": 79.99,
+    "average_rating": 4.4,
+    "category": "Artificial Plants",
+    "brand": "GreenThumb"
+  },
+  {
+    "image": "https://i.ibb.co/xqNGJSh/img-2.jpg",
+    "name": "Outdoor Cypress Tree",
+    "price": 99.99,
+    "average_rating": 4.5,
+    "category": "Plants Accessories",
+    "brand": "GreenScape"
+  },
+  {
+    "image": "https://i.ibb.co/xqNGJSh/img-2.jpg",
+    "name": "Decorative Birch Tree",
+    "price": 59.99,
+    "average_rating": 4.2,
+    "category": "Plants Accessories",
+    "brand": "Leafy Life"
+  },
+  {
+    "image": "https://i.ibb.co/xqNGJSh/img-2.jpg",
+    "name": "Indoor Snake Tree",
+    "price": 29.99,
+    "average_rating": 4.1,
+    "category": "Artificial Plants",
+    "brand": "GreenThumb"
+  }
+]

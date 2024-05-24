@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Johnson",
+    "rating": 5,
+    "comment": "This product is amazing! It has completely surpassed my expectations.",
+    "image": "https://i.ibb.co/9qL2zjt/artificial-plants-large-artifi-1664426675-292189ee-progressive.jpg"
+  },
+  {
+    "name": "Bob Smith",
+    "rating": 4,
+    "comment": "Very good quality and fast shipping. I am quite satisfied with my purchase."
+  },
+  {
+    "name": "Charlie Brown",
+    "rating": 3,
+    "comment": "The product is decent for the price, but there are a few areas that could be improved."
+  }
+]
