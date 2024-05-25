@@ -1,8 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
+
 import { BsCart2 } from "react-icons/bs";
-import { CgProfile } from "react-icons/cg";
+
 import useAuth from "../../hooks/useAuth";
+import MyProfile from "./MyProfile";
 
 const Navbar = () => {
   const { user, handleSignOut } = useAuth();
@@ -10,14 +11,35 @@ const Navbar = () => {
 
   const navItems = (
     <>
-      <li>
-        <NavLink to="/">Home</NavLink>
+      <li className="text-xl font-semibold">
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? "" : isActive ? "text-[#00fecb] underline" : ""
+          }
+        >
+          Home
+        </NavLink>
       </li>
-      <li className="mx-3">
-        <NavLink to="/products">Products</NavLink>
+      <li className="text-xl font-semibold">
+        <NavLink
+          to="/products"
+          className={({ isActive, isPending }) =>
+            isPending ? "" : isActive ? "text-[#00fecb] underline" : ""
+          }
+        >
+          Products
+        </NavLink>
       </li>
-      <li>
-        <NavLink to="/contactUs">ContuctUs</NavLink>
+      <li className="text-xl font-semibold">
+        <NavLink
+          to="/contactUs"
+          className={({ isActive, isPending }) =>
+            isPending ? "" : isActive ? "text-[#00fecb] underline" : ""
+          }
+        >
+          ContuctUs
+        </NavLink>
       </li>
     </>
   );
@@ -69,14 +91,9 @@ const Navbar = () => {
             </div>
             {/* cart & profile icon  */}
             <div className="flex gap-6">
-              <button>
-                <Link className="flex items-center ">
+              <button className="w-9 h-9">
+                <Link className="flex items-center h-full">
                   <BsCart2 />
-                </Link>
-              </button>
-              <button>
-                <Link className="flex items-center">
-                  <CgProfile />
                 </Link>
               </button>
             </div>
@@ -86,54 +103,34 @@ const Navbar = () => {
               <button>
                 <Link></Link>
               </button>
-              <div className="flex mb-3 justify-end">
-                {user ? (
-                  <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn h-12 md:h-[60px]">
-                      <img
-                        className="h-12 w-12 rounded-3xl  md:h-[60px]  md:rounded-[30px]"
-                        src={user?.photoURL}
-                        alt=""
-                      />
-                    </label>
-                    <ul
-                      tabIndex={0}
-                      className="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52"
+              <div className="flex  mb-3 justify-end">
+                {user?.email ? (
+                  <>
+                    <button
+                      onClick={handleSignOut}
+                      className="btn btn-ghost lg:text-xl font-semibold"
                     >
-                      <li>{user?.displayName}</li>
-                      <li>
-                        <Link to="/dashboard/myProfile">
-                          <button className="border border-red-600">
-                            Dashboard
-                          </button>
-                        </Link>
-                      </li>
-                      <li>
-                        <button onClick={handleSignOut}>LogOut</button>
-                      </li>
-                    </ul>
-                  </div>
+                      LogOut
+                    </button>
+                    <span className=" ">
+                      <MyProfile></MyProfile>
+                    </span>
+                  </>
                 ) : (
-                  <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn md:h-[60px]">
-                      <HiOutlineMenuAlt3 />
-                    </label>
-                    <ul
-                      tabIndex={0}
-                      className="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52"
+                  <li className="text-xl font-semibold">
+                    <NavLink
+                      to="/login"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "text-[#00f8e7] underline"
+                          : ""
+                      }
                     >
-                      <li className="">
-                        <Link className="" to="/">
-                          <button>Dasboard</button>
-                        </Link>
-                      </li>
-                      <li className="mt-2">
-                        <Link className="" to="/login">
-                          <button>Login</button>
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
+                      Login
+                    </NavLink>
+                  </li>
                 )}
               </div>
             </div>
