@@ -3,12 +3,14 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "./CustomerReviews.css";
 import "swiper/css/pagination";
+import { FaStar } from "react-icons/fa6";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const CustomerReviews = () => {
   return (
     <section className="mt-44">
-      <h1 className="text-center text-3xl text-red-600 font-medium pb-10">
-        Food Gallery With Slider
+      <h1 className=" text-3xl  ml-52 font-bold pb-10">
+        What customers say about <br /> GREDMIND?
       </h1>
 
       <Swiper
@@ -21,55 +23,97 @@ const CustomerReviews = () => {
         modules={[Pagination]}
         className="mySwiper mb-24"
       >
+        {/* card 1 */}
         <SwiperSlide className="card-raw-css">
-          <img
-            className="w-full h-[410px] shadow-2xl"
-            src="https://i.ibb.co/zJjwjXc/main-courses-1.jpg"
-            alt=""
-          />
-          <h2 className="text-4xl uppercase text-center -mt-16 text-white">
-            Fishes
-          </h2>
+          <div className="w-full h-[410px] shadow-2xl bg-[#C1DCDC]">
+            <p className="pt-20 px-5">
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
+              eaque, at odit voluptatum non aperiam id perferendis ea.
+              Necessitatibus, sint?"
+            </p>
+
+            <div className="font-semibold flex justify-between px-10 pt-10 text-xl">
+              <h2>Irfan khan </h2>
+              <p className="flex items-center gap-2">
+                <span>
+                  <FaStar />
+                </span>{" "}
+                4.5
+              </p>
+            </div>
+            <p className="pl-10 pt-10 text-5xl">
+              <FaQuoteLeft />
+            </p>
+          </div>
         </SwiperSlide>
+        {/* card 2 */}
         <SwiperSlide className="card-raw-css">
-          <img
-            className="w-full h-[410px] shadow-2xl"
-            src="https://i.ibb.co/sHnCB5V/pizza.jpg"
-            alt=""
-          />
-          <h2 className="text-4xl uppercase text-center -mt-16 text-white">
-            Pizza
-          </h2>
+          <div className="w-full h-[410px] shadow-2xl bg-[#C1DCDC]">
+            <p className="pt-20 px-5">
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
+              eaque, at odit voluptatum non aperiam id perferendis ea.
+              Necessitatibus, sint?"
+            </p>
+
+            <div className="font-semibold flex justify-between px-10 pt-10 text-xl">
+              <h2>Irfan khan </h2>
+              <p className="flex items-center gap-2">
+                <span>
+                  <FaStar />
+                </span>{" "}
+                4.5
+              </p>
+            </div>
+            <p className="pl-10 pt-10 text-5xl">
+              <FaQuoteLeft />
+            </p>
+          </div>
         </SwiperSlide>
+        {/* card 3 */}
         <SwiperSlide className="card-raw-css">
-          <img
-            className="w-full h-[410px] shadow-2xl"
-            src="https://i.ibb.co/nMPy5mn/spicy-1.jpg"
-            alt=""
-          />
-          <h2 className="text-4xl uppercase text-center -mt-16 text-white">
-            Chicken
-          </h2>
+          <div className="w-full h-[410px] shadow-2xl bg-[#C1DCDC]">
+            <p className="pt-20 px-5">
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
+              eaque, at odit voluptatum non aperiam id perferendis ea.
+              Necessitatibus, sint?"
+            </p>
+
+            <div className="font-semibold flex justify-between px-10 pt-10 text-xl">
+              <h2>Irfan khan </h2>
+              <p className="flex items-center gap-2">
+                <span>
+                  <FaStar />
+                </span>{" "}
+                4.5
+              </p>
+            </div>
+            <p className="pl-10 pt-10 text-5xl">
+              <FaQuoteLeft />
+            </p>
+          </div>
         </SwiperSlide>
+        {/* card 4 */}
         <SwiperSlide className="card-raw-css">
-          <img
-            className="w-full h-[410px] shadow-2xl"
-            src="https://i.ibb.co/JQqgw0N/main-courses-2.jpg"
-            alt=""
-          />
-          <h2 className="text-4xl uppercase text-center -mt-16 text-white">
-            Fry
-          </h2>
-        </SwiperSlide>
-        <SwiperSlide className="card-raw-css">
-          <img
-            className="w-full h-[410px] shadow-2xl"
-            src="https://i.ibb.co/nQ8FHYV/salad-potatoes-and-bread.jpg"
-            alt=""
-          />
-          <h2 className="text-4xl uppercase text-center -mt-16 text-white">
-            Salad
-          </h2>
+          <div className="w-full h-[410px] shadow-2xl bg-[#C1DCDC]">
+            <p className="pt-20 px-5">
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
+              eaque, at odit voluptatum non aperiam id perferendis ea.
+              Necessitatibus, sint?"
+            </p>
+
+            <div className="font-semibold flex justify-between px-10 pt-10 text-xl">
+              <h2>Irfan khan </h2>
+              <p className="flex items-center gap-2">
+                <span>
+                  <FaStar />
+                </span>{" "}
+                4.5
+              </p>
+            </div>
+            <p className="pl-10 pt-10 text-5xl">
+              <FaQuoteLeft />
+            </p>
+          </div>
         </SwiperSlide>
       </Swiper>
     </section>

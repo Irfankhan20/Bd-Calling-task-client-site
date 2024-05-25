@@ -71,31 +71,45 @@ const ProductDetails = () => {
   const cartFormData = (e) => {
     e.preventDefault();
     const form = e.target;
-    const count = form.number.value;
-    const value = { count };
-    console.log(value);
+    const productQuantity = form.number.value;
+    const productName = productDetails.name;
+    const productImage = productDetails.image;
+    const productPrice = productDetails.price;
+    const cartValue = {
+      productQuantity,
+      productName,
+      productImage,
+      productPrice,
+    };
+    console.log(cartValue);
 
-    // fetch("https://bd-calling-job-task-server.vercel.app/cartdata", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(value),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     // console.log(data);
-
-    //     if (data.insertedId) {
-    //       refetch();
-    //       Swal.fire({
-    //         title: "New Review Added!",
-    //         text: "Explore the GREEMIND",
-    //         icon: "success",
-    //         confirmButtonText: "Ok",
-    //       });
-    //     }
-    //   });
+    fetch("https://bd-calling-job-task-server.vercel.app/cartdata", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(cartValue),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Item Added to Cart!",
+            text: "Check your cart",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
   };
 
   return (
@@ -125,7 +139,7 @@ const ProductDetails = () => {
               name="number"
               id=""
             />
-            <Link to="/addtocart">
+            <Link>
               <button className="btn bg-[#0cc4b0] text-white hover:bg-[#1b776c]">
                 ADD TO CART
               </button>

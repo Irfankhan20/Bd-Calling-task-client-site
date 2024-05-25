@@ -92,7 +92,7 @@ const Navbar = () => {
             {/* cart & profile icon  */}
             <div className="flex gap-6">
               <button className="w-9 h-9">
-                <Link className="flex items-center h-full">
+                <Link to="/addtocart" className="flex items-center h-full">
                   <BsCart2 />
                 </Link>
               </button>
