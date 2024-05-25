@@ -1,20 +1,19 @@
+import { RiDeleteBin6Line } from "react-icons/ri";
+
 const AddToCart = () => {
   return (
     <div className="max-w-7xl mx-auto my-20">
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table shadow-lg">
           {/* head */}
           <thead>
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
+              <th>CHECKBOX</th>
+              <th>PRODUCT NAME</th>
+              <th>PRICE</th>
+              <th>QUANTITY</th>
+              <th>SUBTOTAL</th>
+              <th>REMOVE</th>
             </tr>
           </thead>
           <tbody>
@@ -37,21 +36,17 @@ const AddToCart = () => {
                   </div>
                   <div>
                     <div className="font-bold">Hart Hagerty</div>
-                    <div className="text-sm opacity-50">United States</div>
                   </div>
                 </div>
               </td>
-              <td>
-                Zemlak, Daniel and Leannon
-                <br />
-                <span className="badge badge-ghost badge-sm">
-                  Desktop Support Technician
-                </span>
+              <td>100.00 TK</td>
+              <td>2</td>
+              <td>200.00 TK</td>
+              <td className="text-red-500 text-2xl">
+                <button>
+                  <RiDeleteBin6Line />
+                </button>
               </td>
-              <td>Purple</td>
-              <th>
-                <button className="btn btn-ghost btn-xs">details</button>
-              </th>
             </tr>
             {/* row 2 */}
             <tr>
@@ -65,28 +60,24 @@ const AddToCart = () => {
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
                       <img
-                        src="https://img.daisyui.com/tailwind-css-component-profile-3@56w.png"
+                        src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
                         alt="Avatar Tailwind CSS Component"
                       />
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold">Brice Swyre</div>
-                    <div className="text-sm opacity-50">China</div>
+                    <div className="font-bold">Hart Hagerty</div>
                   </div>
                 </div>
               </td>
-              <td>
-                Carroll Group
-                <br />
-                <span className="badge badge-ghost badge-sm">
-                  Tax Accountant
-                </span>
+              <td>100.00 TK</td>
+              <td>2</td>
+              <td>200.00 TK</td>
+              <td className="text-red-500 text-2xl">
+                <button>
+                  <RiDeleteBin6Line />
+                </button>
               </td>
-              <td>Red</td>
-              <th>
-                <button className="btn btn-ghost btn-xs">details</button>
-              </th>
             </tr>
             {/* row 3 */}
             <tr>
@@ -100,28 +91,24 @@ const AddToCart = () => {
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
                       <img
-                        src="https://img.daisyui.com/tailwind-css-component-profile-4@56w.png"
+                        src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
                         alt="Avatar Tailwind CSS Component"
                       />
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold">Marjy Ferencz</div>
-                    <div className="text-sm opacity-50">Russia</div>
+                    <div className="font-bold">Hart Hagerty</div>
                   </div>
                 </div>
               </td>
-              <td>
-                Rowe-Schoen
-                <br />
-                <span className="badge badge-ghost badge-sm">
-                  Office Assistant I
-                </span>
+              <td>100.00 TK</td>
+              <td>2</td>
+              <td>200.00 TK</td>
+              <td className="text-red-500 text-2xl">
+                <button>
+                  <RiDeleteBin6Line />
+                </button>
               </td>
-              <td>Crimson</td>
-              <th>
-                <button className="btn btn-ghost btn-xs">details</button>
-              </th>
             </tr>
             {/* row 4 */}
             <tr>
@@ -135,41 +122,43 @@ const AddToCart = () => {
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
                       <img
-                        src="https://img.daisyui.com/tailwind-css-component-profile-5@56w.png"
+                        src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
                         alt="Avatar Tailwind CSS Component"
                       />
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold">Yancy Tear</div>
-                    <div className="text-sm opacity-50">Brazil</div>
+                    <div className="font-bold">Hart Hagerty</div>
                   </div>
                 </div>
               </td>
-              <td>
-                Wyman-Ledner
-                <br />
-                <span className="badge badge-ghost badge-sm">
-                  Community Outreach Specialist
-                </span>
+              <td>100.00 TK</td>
+              <td>2</td>
+              <td>200.00 TK</td>
+              <td className="text-red-500 text-2xl">
+                <button>
+                  <RiDeleteBin6Line />
+                </button>
               </td>
-              <td>Indigo</td>
-              <th>
-                <button className="btn btn-ghost btn-xs">details</button>
-              </th>
             </tr>
           </tbody>
-          {/* foot */}
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
-            </tr>
-          </tfoot>
         </table>
+        <div className="mt-5 flex justify-between">
+          <button className="btn btn-accent">CONTINUE SHOPPING</button>
+          <button className="btn btn-error">CLEAR CART</button>
+        </div>
+        <div className="mt-5 flex-col justify-end">
+          <h2 className="py-2">
+            Subtotal: <span>200.00TK</span>
+          </h2>
+
+          <p className="border-b-2 w-36 pb-2">
+            Shipping Fee: <span>50TK</span>
+          </p>
+          <p className="pt-2">
+            Order Total: <span>250.00TK</span>
+          </p>
+        </div>
       </div>
     </div>
   );
