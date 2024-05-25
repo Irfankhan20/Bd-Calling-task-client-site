@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 
 import { FaStar } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Reviews from "./Reviews";
 // import productReview from "../../../public/productReview.json";
 import Swal from "sweetalert2";
@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
+import { useEffect } from "react";
 
 const ProductDetails = () => {
   const { loading } = useAuth();
@@ -20,8 +21,7 @@ const ProductDetails = () => {
   } = useForm();
   const productDetails = useLoaderData();
   const id = productDetails?._id;
-  console.log(id);
-  //
+  console.log(productDetails);
 
   // data get
   const { data: product = [], refetch } = useQuery({
@@ -32,7 +32,11 @@ const ProductDetails = () => {
       return res.data;
     },
   });
-  console.log(product);
+
+  // console.log(product);
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const handleFormSubmit = async (data) => {
     // console.log(data);
@@ -46,7 +50,7 @@ const ProductDetails = () => {
 
     // send data to the server
 
-    fetch("https://bd-calling-job-task-server.vercel.app/addProductReview", {
+    fetch("http://localhost:5000/addProductReview", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -69,6 +73,14 @@ const ProductDetails = () => {
       });
   };
 
+  const cartFormData = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const count = form.number.value;
+    const value = { count };
+    console.log(value);
+  };
+
   return (
     <div className="md:mt-[103px] max-w-screen-xl  mx-auto">
       <div className="card rounded-xl  my-5 h-fit p-3  md:h-[750px] bg-base-100 shadow-xl">
@@ -77,7 +89,7 @@ const ProductDetails = () => {
         </div>
         <div className="card-body px-5 ">
           <h2 className="card-title text-4xl">{productDetails.name}</h2>
-          <div className="badge badge-secondary">NEW</div>
+          <div className="badge badge-accent text-white font-bold">New</div>
 
           <span className="text-lg  font-medium ">
             <span>Reviews : {productDetails.average_rating}</span>
@@ -89,81 +101,19 @@ const ProductDetails = () => {
             commodi adipisci deserunt fugit veniam non earum ipsum ipsam eaque
             nemo?
           </p>
-          <div className="flex items-center  md:w-2/6 gap-2 md:gap-5">
-            <div className="flex-1 gap-2">
-              {/* <div className="flex gap-2">
-                {product?.uploader !== userInfo ? (
-                  <>
-                    {" "}
-                    {voter?.includes(userInfo) ? (
-                      <>
-                        <button
-                          disabled
-                          onClick={() => voteHandle(1)}
-                          className="btn text-2xl"
-                        >
-                          <FaRegThumbsUp></FaRegThumbsUp>
-                          {upvote}
-                        </button>
-                        <button
-                          disabled
-                          onClick={() => voteHandle(-1)}
-                          className="btn text-2xl"
-                        >
-                          <FaRegThumbsDown></FaRegThumbsDown>
-                          {downvote}
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          onClick={() => voteHandle(1)}
-                          className="btn text-2xl"
-                        >
-                          <FaRegThumbsUp></FaRegThumbsUp>
-                          {upvote}
-                        </button>
-                        <button
-                          onClick={() => voteHandle(-1)}
-                          className="btn text-2xl"
-                        >
-                          <FaRegThumbsDown></FaRegThumbsDown>
-                          {downvote}
-                        </button>
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <button
-                      disabled
-                      onClick={() => voteHandle(1)}
-                      className="btn text-2xl"
-                    >
-                      <FaRegThumbsUp></FaRegThumbsUp>
-                      {upvote}
-                    </button>
-                    <button
-                      disabled
-                      onClick={() => voteHandle(-1)}
-                      className="btn text-2xl"
-                    >
-                      <FaRegThumbsDown></FaRegThumbsDown>
-                      {downvote}
-                    </button>
-                  </>
-                )}
-              </div> */}
-            </div>
-            <div className="flex-1">
-              {/* <div className="flex justify-evenly  gap-2 ">
-                <button onClick={addReport} className="btn text-red-600">
-                  {" "}
-                  <FaBan className="text-2xl"></FaBan>{" "}
-                </button>
-              </div> */}
-            </div>
-          </div>
+          <form onSubmit={cartFormData}>
+            <input
+              className="border border-[#1b776c] p-2 w-36"
+              type="number"
+              name="number"
+              id=""
+            />
+            <Link to="/addtocart">
+              <button className="btn bg-[#0cc4b0] text-white hover:bg-[#1b776c]">
+                ADD TO CART
+              </button>
+            </Link>
+          </form>
         </div>
       </div>
 
