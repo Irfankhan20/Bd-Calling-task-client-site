@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { FaStar } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import Reviews from "./Reviews";
-// import productReview from "../../../public/productReview.json";
+
 import Swal from "sweetalert2";
-// import { useEffect, useState } from "react";
+
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
@@ -14,11 +14,7 @@ import { useEffect } from "react";
 const ProductDetails = () => {
   const { loading } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const {
-    register,
-    handleSubmit,
-    //   formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const productDetails = useLoaderData();
   const id = productDetails?._id;
   console.log(productDetails);
@@ -33,7 +29,6 @@ const ProductDetails = () => {
     },
   });
 
-  // console.log(product);
   useEffect(() => {
     refetch();
   }, []);
@@ -50,7 +45,7 @@ const ProductDetails = () => {
 
     // send data to the server
 
-    fetch("http://localhost:5000/addProductReview", {
+    fetch("https://bd-calling-job-task-server.vercel.app/addProductReview", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -79,6 +74,28 @@ const ProductDetails = () => {
     const count = form.number.value;
     const value = { count };
     console.log(value);
+
+    // fetch("https://bd-calling-job-task-server.vercel.app/cartdata", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(value),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     // console.log(data);
+
+    //     if (data.insertedId) {
+    //       refetch();
+    //       Swal.fire({
+    //         title: "New Review Added!",
+    //         text: "Explore the GREEMIND",
+    //         icon: "success",
+    //         confirmButtonText: "Ok",
+    //       });
+    //     }
+    //   });
   };
 
   return (
@@ -129,15 +146,7 @@ const ProductDetails = () => {
           ))}
         </div>
       </div>
-      {/* <div className=" max-w-7xl  shadow-2xl h-[800px] my-20 bg-base-300 border-4  mx-auto">
-        {product?.uploader !== userInfo && (
-          <AddReview
-            userInfo={userInfo}
-            reviewerContainer={reviewerContainer}
-            handleSubmitForm={handleSubmitForm}
-          ></AddReview>
-        )}
-      </div> */}
+
       <div className=" max-w-xl my-20 mx-auto bg-slate-100 mb-20">
         <form
           className="card-body bg-slate-100"
